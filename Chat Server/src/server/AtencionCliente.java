@@ -10,7 +10,6 @@ import java.util.Observer;
 import org.apache.log4j.Logger;
 
 public class AtencionCliente extends Thread implements Observer {
-
 	private Logger log;
 	private Socket socket;
 	private ObjectInputStream entrada;
