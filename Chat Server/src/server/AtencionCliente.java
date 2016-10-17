@@ -24,9 +24,7 @@ public class AtencionCliente extends Thread implements Observer {
 		try {
 			entrada = new ObjectInputStream(socket.getInputStream());
 			salida = new ObjectOutputStream(socket.getOutputStream());
-		}
-
-		catch (IOException e) {
+		} catch (IOException e) {
 			log.info("Error: " + e.getMessage());
 		}
 	}
@@ -41,18 +39,14 @@ public class AtencionCliente extends Thread implements Observer {
 			try {
 				mensajeRecibido = entrada.readUTF();
 				mensajes.setMensaje(mensajeRecibido);
-			}
-
-			catch (IOException e) {
+			} catch (IOException e) {
 				log.info("Cliente con la IP " + socket.getInetAddress().getHostName() + " desconectado.");
 				conectado = false;
 
 				try {
 					entrada.close();
 					salida.close();
-				}
-
-				catch (IOException ex) {
+				} catch (IOException ex) {
 					log.error("Error: " + ex.getMessage());
 				}
 			}
@@ -63,9 +57,7 @@ public class AtencionCliente extends Thread implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		try {
 			salida.writeUTF(arg0.toString());
-		}
-		
-		catch (IOException e) {
+		} catch (IOException e) {
 			log.error("Error al enviar mensaje al cliente" + e.getMessage());
 		}
 	}
